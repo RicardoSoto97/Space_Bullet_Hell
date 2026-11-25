@@ -8,6 +8,8 @@ var scrap_types: Dictionary[StringName, ScrapTypeData] = {}
 ## La base (GDD 7): edificios y minerales puros.
 var buildings: Dictionary[StringName, BuildingData] = {}
 var minerals: Dictionary[StringName, MineralData] = {}
+## Equilibrio de los niveles (aparición, presión y dificultad por zona).
+var balance: StageBalanceData
 ## Mapa estelar: sistemas, y sus cuerpos, estaciones y zonas por id.
 var systems: Dictionary[StringName, StarSystemData] = {}
 var bodies: Dictionary[StringName, CelestialBodyData] = {}
@@ -24,6 +26,17 @@ func _ready() -> void:
 	_load_dir("res://data/buildings/", buildings)
 	_load_dir("res://data/minerals/", minerals)
 	_load_dir("res://data/universe/", systems)
+	balance = load("res://data/balance/stage_balance.tres") as StageBalanceData
+	# Pruebas de equilibrio: `-- --balance-set=hp_per_difficulty:0.3,rate_per_difficulty:0.1`
+	# cambia valores solo en esta ejecución (sin tocar el .tres).
+	for arg in OS.get_cmdline_user_args():
+		if arg.begins_with("--balance-set="):
+			balance = balance.duplicate()
+			for pair in arg.trim_prefix("--balance-set=").split(","):
+				var kv := pair.split(":")
+				if kv.size() == 2 and kv[0] in balance:
+					balance.set(kv[0], float(kv[1]) if typeof(balance.get(kv[0])) == TYPE_FLOAT else int(kv[1]))
+					print("balance-set %s = %s" % [kv[0], balance.get(kv[0])])
 	for sys: StarSystemData in systems.values():
 		for b in sys.bodies:
 			bodies[b.id] = b

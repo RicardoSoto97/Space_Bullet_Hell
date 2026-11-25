@@ -81,6 +81,9 @@ func _ready() -> void:
 	if args.has("stage-seconds"):
 		stage_duration = float(args["stage-seconds"])
 	new_game()
+	# Simulación de una partida entera (fase 6).
+	if args.has("balance-career"):
+		get_tree().root.add_child.call_deferred(BalanceCareer.new())
 
 
 ## Empieza una partida nueva: nave inicial, sin dinero, en la estación del primer sistema.
@@ -918,6 +921,49 @@ func repair_all() -> bool:
 		e["lost"] = false
 		e["destroyed"] = false
 	return true
+
+
+## Repara lo que alcanza el dinero (fase 6): primero la vida de las piezas que siguen en pie,
+## empezando por el núcleo, y después reconstruye las perdidas o destruidas desde el núcleo hacia
+## afuera (una pieza solo si su padre ya está en pie). Devuelve lo gastado.
+func repair_affordable() -> int:
+	var spent := 0
+	for e in blueprint:
+		if e["lost"] or e["destroyed"] or e["hp"] < 0.0:
+			continue
+		var missing: float = part_max_hp(e) - float(e["hp"])
+		var cost := int(ceil(missing * REPAIR_COST_PER_HP))
+		if cost <= money:
+			e["hp"] = -1.0
+		else:
+			cost = money
+			e["hp"] += float(cost) / REPAIR_COST_PER_HP
+		spent += cost
+		money -= cost
+		if money <= 0:
+			break
+	var changed := true
+	while changed:
+		changed = false
+		for e in blueprint:
+			if not (e["lost"] or e["destroyed"]):
+				continue
+			var parent: int = e["attached_to"]
+			if parent >= 0 and (blueprint[parent]["lost"] or blueprint[parent]["destroyed"]):
+				continue
+			var data := Catalog.part(e["part"])
+			var weapon_price := Catalog.weapon(e["weapon"]).price if e["weapon"] != &"" else 0
+			var cost := int(ceil((data.price + weapon_price) * (1.0 if e["destroyed"] else REBUILD_FACTOR)))
+			if cost > money:
+				continue
+			money -= cost
+			spent += cost
+			e["hp"] = -1.0
+			e["lost"] = false
+			e["destroyed"] = false
+			changed = true
+	money_changed.emit(money)
+	return spent
 
 
 # ---------- fin del nivel ----------

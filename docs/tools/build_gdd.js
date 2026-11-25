@@ -9,7 +9,7 @@ const {
 
 const OUT = process.argv[2];
 const IMG = process.argv[3];
-const VERSION = "0.32";
+const VERSION = "0.33";
 
 const NAVY = "1B2A3A", CYAN = "1FA9D6", ORANGE = "E07B1A", GREY = "5A6675", LIGHT = "EEF3F7";
 const FONT = "Arial";
@@ -89,8 +89,8 @@ const cover = [
   }),
   table([2600, 6760], ["Campo", "Valor"], [
     ["Título", "Bullet Hell Survivor (provisional)"],
-    ["Versión", `${VERSION} — Equilibrio`],
-    ["Fecha", "20 de noviembre de 2026"],
+    ["Versión", `${VERSION} — Versión 0.1.0 del juego`],
+    ["Fecha", "25 de noviembre de 2026"],
     ["Género", "Bullet hell / survivor"],
     ["Motor", "Godot 4.7.2"],
   ]),
@@ -304,7 +304,7 @@ const body = [
   ]),
   gap(),
   p("Dónde se acoplan, si también aumentan la velocidad y si tienen niveles.", "X"),
-  bullet("Mientras tanto, en el prototipo: se acoplan en cualquier ranura lateral, suman velocidad (pequeño +1,5; mediano +2,5) y no tienen niveles.", "P"),
+  bullet("Mientras tanto, en el prototipo: se acoplan en cualquier ranura lateral, suman velocidad (pequeño +1,5; mediano +2,5) y no tienen niveles. Vida: pequeño 70, mediano 100 y grande 130 (antes 30, 45 y 60: el pequeño se destruía en casi todos los niveles y había que comprarlo entero).", "P"),
   p("El **motor interestelar** no es un motor de propulsión y no se cambia: lo que se acopla y se mejora es el **depósito de combustible interestelar** (ver 5.4).", "D"),
   h2("4.6 Tripulantes"),
   p("Los tripulantes operan estructuras y edificios: la estación de mando necesita uno para operar su arma, y el centro de investigación de la base necesita un investigador. Las habitaciones de tripulantes aumentan cuántos puede llevar la nave.", "D"),
@@ -416,6 +416,7 @@ const body = [
   bullet("**Bar:** hay candidatos con estadísticas al azar; se reclutan pagando, y los mejores cuestan más (ver 4.6). Pueden trabajar en la nave o en los edificios de la base."),
   p("**Reparar cuesta 2 créditos por punto de vida.** Reconstruir una pieza perdida cuesta la mitad de su precio y una totalmente destruida, el precio entero (con su arma, si era una estación de mando).", "D"),
   p("**Si la nave se queda sin armas útiles**, en la estación se puede volver gratis a la nave inicial. Así el jugador nunca queda atascado sin dinero ni armas.", "D"),
+  bullet("Si el dinero no alcanza para dejar la nave entera, el mecánico **repara lo que alcance**: primero la vida de las piezas que siguen en pie (el núcleo primero) y después reconstruye las perdidas, desde el núcleo hacia afuera.", "P"),
   h2("6.2 Tipos de chatarra y su valor"),
   p("Hay **distintos tipos de chatarra**. Cada uno se vende a un precio distinto.", "D"),
   p("El valor de la chatarra es la referencia de todos los demás precios (piezas, terrenos, edificios). Precios iniciales, con el dinero en **créditos**. Se ajustarán jugando:", "D", true),
@@ -428,7 +429,7 @@ const body = [
   ]),
   gap(),
   bullet("Cada estación paga un poco más o un poco menos por cada tipo, así que conviene elegir dónde vender.", "P"),
-  bullet("Referencia de ingresos: un nivel cercano (5 minutos) da unos 300 créditos; uno lejano (30 minutos) da varias veces más, porque hay más enemigos y chatarra más rara.", "P"),
+  bullet("Referencia de ingresos (medida con simulaciones en la versión 0.1.0): un nivel cercano (5 minutos) da unos 800 créditos de chatarra (entre 550 y 1.100) y uno de 10 minutos, unos 3.500. Después de reparar quedan unos 600 y 2.500. Los lejanos dan varias veces más, porque hay más enemigos y chatarra más rara.", "P"),
   note("Todos los precios son provisionales: se revisarán en las pruebas de juego."),
   h2("6.3 De dónde salen las piezas", "D"),
   bullet("**Al principio:** el mecánico de la estación vende **piezas básicas**: los tres **pasillos** (cuadrado, doble y triple), la **estación de mando** y las **armas** (metralleta, lanzacohetes, láser…).", "D"),
@@ -520,7 +521,7 @@ const body = [
     ["Cargador de combustible", "2.000", "No tiene niveles.", "No necesita"],
   ]),
   gap(),
-  bullet("Referencia: un nivel cercano da unos 300 créditos. La primera base útil (asteroide, cargador, refinería y puerto comercial) cuesta unos 9.500; una base completa en un planeta, unos 34.000 sin contar mejoras.", "P"),
+  bullet("Referencia: un nivel cercano da unos 800 créditos. La primera base útil (asteroide, cargador, refinería y puerto comercial) cuesta unos 9.500; una base completa en un planeta, unos 34.000 sin contar mejoras.", "P"),
   bullet("La academia muestra candidatos como el bar (3 a 5, más con los niveles) y cambian cada vez que la nave aterriza. El entrenamiento es el de 4.6.", "P"),
   p("Cómo se ve cada edificio (propuesta para los modelos):", "P", true),
   bullet("**Centro de investigación:** cúpula de laboratorio con antenas y paneles; en un satélite, con un telescopio encima."),
@@ -661,7 +662,7 @@ const body = [
     ["Sembrador", "Zonas de 20 min", "Nave ancha con forma de manta. Se mantiene a distancia, deja minas casi quietas detrás y dispara abanicos de 5 balas hacia la nave."],
   ]),
   gap(),
-  bullet("Dificultad de la zona (1 a 6, una por cada 5 minutos de distancia). Por cada punto: +45 % de vida de los enemigos, +15 % de enemigos y +12 % de cadencia de sus balas.", "P"),
+  bullet("Dificultad de la zona (1 a 6, una por cada 5 minutos de distancia). Por cada punto: +30 % de vida de los enemigos, +10 % de enemigos y +12 % de cadencia de sus balas (antes +45 % y +15 %: las zonas de 10 minutos eran un muro).", "P"),
   bullet("En los niveles de más de 5 minutos la presión sigue subiendo, pero más despacio (al 35 %), para que un nivel de 30 minutos no se desborde.", "P"),
   p("**Calendario de un nivel cercano (5 minutos):**", "D", true),
   bullet("**Hasta el minuto 1:30, solo enemigos chicos (enjambre)**, cada vez más numerosos."),
@@ -748,7 +749,7 @@ const body = [
     ["Motor", "Godot 4.7.2, renderizador Forward+", D],
     ["Resolución", "Al iniciar se detecta la resolución de la pantalla y se usa como resolución por defecto. Habrá opciones típicas para cambiarla. Resolución de diseño: 1280 × 720, escalado canvas_items.", D],
     ["3D + 2D", "El mundo es una escena 3D con cámara ortográfica, algo inclinada, y el fondo 2D se dibuja detrás.", P],
-    ["Equilibrio", "Se mide con simulaciones: el juego se ejecuta solo, con un piloto automático que esquiva y el tiempo acelerado, y anota si la nave sobrevive, el daño que recibe (y de dónde viene) y la chatarra que gana. Sirven para comparar cambios; las pruebas del equipo tienen la última palabra.", P],
+    ["Equilibrio", "Se mide con simulaciones: el juego se ejecuta solo, con un piloto automático que esquiva y el tiempo acelerado, y anota si la nave sobrevive, el daño que recibe (y de dónde viene) y la chatarra que gana. Una simulación de partida entera juega, vende, repara y compra sola, y anota cuándo llega a cada hito de 2.4. Sirven para comparar cambios; las pruebas del equipo tienen la última palabra.", P],
     ["Rendimiento", "Muchas balas y enemigos a la vez: las balas se reutilizan (pooling). Probado en la zona más difícil: 160 enemigos y unas 900 balas a más de 130 FPS, así que por ahora los enemigos no necesitan reutilizarse.", P],
     ["Modelos 3D", "Cada pieza se genera con un script de Python en Blender (tools/blender/build_parts.py) y se exporta a .glb, que Godot importa directamente. 1 cubo de pasillo = 1 metro.", P],
     ["Datos de piezas", "Cada pieza, edificio y evolución definida como recurso de Godot (.tres) para ajustarlas sin tocar código.", P],
@@ -795,6 +796,7 @@ const body = [
     ["0.16", "15/11/2026", "Todas las armas llegan al nivel 10, evolucionan y vuelven al nivel 1. Las estructuras de calidad de vida (biblioteca, comedor, cocina, sala de recreación y habitaciones) dan solo +1 % por nivel. Nueva estructura: la cocina. Lista de estructuras con niveles. Nombres propuestos para las evoluciones: Lanzador Tsar y Cañón de positrones."],
     ["0.17", "15/11/2026", "Se confirman los nombres de las evoluciones (Lanzador Tsar y Cañón de positrones) y que el +1 % de las estructuras de calidad de vida es por nivel y se suma entre estructuras."],
     ["0.18", "15/11/2026", "Se define el estilo de modelado: low-poly, formas redondeadas y medio cilíndricas como los vehículos actuales, colores planos sin texturas. Primeros modelos 3D de las piezas, generados en Blender."],
+    ["0.33", "25/11/2026", "Versión 0.1.0 del juego. Rondas de equilibrio con la simulación de partida entera: más vida para los propulsores (70, 100 y 130) y la estación de mando (150); el lancero hace 10 de daño cada 0,8 s (antes 14 cada 0,4 s); cada punto de dificultad suma +30 % de vida y +10 % de enemigos (antes +45 % y +15 %); el mecánico repara lo que alcance si no hay dinero para todo. Un nivel cercano da unos 800 créditos (antes se estimaban 300). La versión se ve en el menú principal."],
     ["0.32", "20/11/2026", "Decisiones para la fase 6 (equilibrio): la partida empieza con 1.000 créditos; un jugador cuidadoso no debería perder la nave; se aceptan los tiempos de la partida (2.4). El generador de escudo es un accesorio que va solo arriba o abajo, uno por nave. El núcleo sube de nivel: el nivel 2 cuesta 500 y cada nivel un 25 % más, con +25 % de casco y +1 plaza por nivel. El primer nivel se hace un poco más fácil. La base se rediseña en la versión 0.2.0."],
     ["0.31", "16/11/2026", "Fase 5 implementada. Los efectos de sonido son los packs de Kenney (CC0); la música llegará en una fase posterior. Al perder la nave siempre se reaparece en la estación más cercana; con hangar, se va a la base a reconstruir. Propuestas: cómo se usa el mando en cada pantalla, qué sonidos y efectos hay, el menú de pausa (salir sin guardar desde un nivel) y la pantalla completa por defecto."],
     ["0.30", "16/11/2026", "Decisiones para la fase 5 (pulido): se pueden cambiar las teclas del teclado y los botones del mando; todos los menús e interfaces funcionan con mando; al perder la nave, un menú simple permite reaparecer en la estación más cercana conservando el dinero; efectos visuales sutiles pero con personalidad. El sonido y la música quedan por definir. Android se deja para mucho más adelante. La base se rediseñará por completo. El generador de escudo queda pendiente. El equilibrio se revisará más adelante. La cámara del nivel se inclina 10° en vez de 22°."],

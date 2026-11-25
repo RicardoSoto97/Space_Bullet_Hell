@@ -58,7 +58,7 @@ func setup(p_data: EnemyData, p_stage: Stage, hp_multiplier: float, p_elite: boo
 	sphere.radius = data.collision_radius * (1.35 if elite else 1.0)
 	shape.shape = sphere
 	add_child(shape)
-	_fire_rate = 1.0 + 0.12 * float(stage.difficulty - 1)
+	_fire_rate = 1.0 + Catalog.balance.fire_rate_per_difficulty * float(stage.difficulty - 1)
 	_fire_timer = randf_range(0.5, data.fire_interval) if data.fire_interval > 0.0 else 0.0
 	_mine_timer = randf_range(0.5, data.mine_interval) if data.mine_interval > 0.0 else 0.0
 	_strafe_sign = 1.0 if randf() < 0.5 else -1.0

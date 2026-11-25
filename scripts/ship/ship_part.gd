@@ -75,7 +75,14 @@ func take_damage(amount: float, through_shield: bool = false) -> void:
 			return
 	# El blindaje resta daño, pero cada golpe hace al menos un 25 %.
 	var damage := maxf(amount - data.armor - bonus_armor, amount * 0.25)
+	# Simulaciones de equilibrio: `--player-damage=F` imita a un jugador que esquiva mejor que el
+	# piloto automático (la nave recibe esa fracción del daño).
+	if GameState.args.has("player-damage"):
+		damage *= float(GameState.args["player-damage"])
 	var new_hp := maxf(hp() - damage, 0.0)
+	if new_hp <= 0.0 and is_core() and GameState.args.has("no-death"):
+		new_hp = 1.0
+		ship.on_near_death()
 	entry["hp"] = new_hp
 	ship.damage_taken += damage
 	ship.damage_log[Ship.damage_source] = ship.damage_log.get(Ship.damage_source, 0.0) + damage

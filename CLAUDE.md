@@ -36,7 +36,7 @@ Si Word se cuelga al abrir el archivo, puede que el usuario lo tenga abierto: tr
 El plan por fases y las decisiones provisionales de implementación están en `docs/PLAN_DESARROLLO.md`. Mantenlo al día.
 
 - **Autoloads:** `Settings` (opciones del jugador y teclas, en `user://settings.cfg`), `Sfx` (efectos de sonido: `Sfx.play(&"id")`, tabla `SOUNDS`) y `GamepadCursor` (mando en las interfaces) cargan después de `GameState`. `Catalog` (`scripts/autoload/catalog.gd`) carga los `Resource` de `data/` por id; `Bases` (`scripts/autoload/bases.gd`) lleva las bases, lo guardado en ellas, sus tripulantes, la investigación, los planos y la producción (solo con el juego abierto); `GameState` (`scripts/autoload/game_state.gd`) guarda dinero, chatarra, el plano de la nave (`blueprint`), la vida de cada pieza y los tripulantes, y cambia entre nivel y estación. También define las acciones de entrada.
-- **Datos** (`data/*.tres`, clases en `scripts/data/`): `PartData`, `WeaponData`, `EnemyData`, `ScrapTypeData`, `BuildingData`, `MineralData`. Los números de equilibrio van ahí, no en el código. Los .tres de **piezas, armas, edificios y minerales** se generan con `node tools/data/gen_data.js .`: cambia el script y vuelve a generarlos, no los edites a mano.
+- **Datos** (`data/*.tres`, clases en `scripts/data/`): `PartData`, `WeaponData`, `EnemyData`, `ScrapTypeData`, `BuildingData`, `MineralData` y `StageBalanceData` (`data/balance/stage_balance.tres`, en `Catalog.balance`: aparición de enemigos, oleadas, presión y multiplicadores por dificultad de la zona). Los números de equilibrio van ahí, no en el código. Los .tres de **piezas, armas, edificios y minerales** se generan con `node tools/data/gen_data.js .`: cambia el script y vuelve a generarlos, no los edites a mano.
 - **Nave** (`scripts/ship/`): `Ship` se monta desde `GameState.blueprint`; cada `ShipPart` es un `Area3D` con su vida; `ShipWeapon` dispara solo al enemigo más cercano **dentro de su cono** (hacia el frente de su estación de mando): balas, cohetes (`Rocket`) o rayo.
 - **Plano y ranuras:** cada pieza del plano se une a una ranura de su padre (`attached_to`, `parent_slot`, `mount_slot`), y su `transform` se calcula con `GameState.attach_transform`. Usa `GameState.check_placement`, `buy_part` y `sell_part`; no escribas posiciones a mano.
 - **Nivel** (`scenes/stage/stage.tscn`, `scripts/stage/`): `Stage` crea entorno, nave, cámara, `EnemySpawner`, `ProjectilePool` y `StageHud`.
@@ -78,6 +78,17 @@ El plan por fases y las decisiones provisionales de implementación están en `d
 - El servidor MCP `blender` (en `.mcp.json`, con la telemetría desactivada) controla un Blender abierto: el add-on «MCP for Blender» ya está instalado y arranca solo al abrir Blender.
 - Cuando empiecen los modelos de Blockbench (v0.2.0): `build_parts.py` **sobrescribe** los `.glb`, así que hay que sacarle los ids ya rehechos antes de ejecutarlo.
 
+## Control de versiones
+
+- Repositorio: `https://github.com/RicardoSoto97/Space_Bullet_Hell` (ramas `main` y `v0.1.0`). Haz commit o push solo cuando el usuario lo pida.
+- `.gitignore`: `.godot/`, `builds/`, `node_modules/`, `*.blend1`, `desktop.ini`.
+
+## Exportar
+
+- `export_presets.cfg` tiene el preset «Windows Desktop», que exporta a `builds/windows/BulletHellSurvivor.exe` (sin `docs/` ni `tools/`). Hace falta tener las plantillas de exportación de Godot 4.7.2 (`%APPDATA%/Godot/export_templates/4.7.2.stable/`).
+- `Godot --headless --path . --export-release "Windows Desktop" builds/windows/BulletHellSurvivor.exe`
+- La versión está en `application/config/version` (`project.godot`) y se ve en el menú principal.
+
 ## Ejecutar
 
 El servidor MCP `godot` (configurado en `.mcp.json`) permite ejecutar el proyecto (`run_project`), leer los errores (`get_debug_output`) y abrir el editor. Después de cada cambio, ejecuta el proyecto y revisa que no haya errores.
@@ -95,7 +106,9 @@ Godot está en `D:/1.Documentos/2. Development/Godot/Godot_v4.7.2-stable_win64.e
 - `--continue --base-jump=<zona> --destroy-at=3 --rebuild-test`: despega de la base, destruye la nave a los 3 s y la reconstruye en el hangar. `--starter-weapon=<id>`: arma de la nave inicial (para probar armas en un nivel).
 - `--build-test --money=20000`: en la estación construye una nave más grande con el editor (pasillo, estaciones con lanzacohetes y láser, habitación y accesorios), contrata tripulantes y guarda capturas (`<png>` y `<png>-bar`).
 - `--ui-test=<carpeta>` (con `--start-stage`): capturas del menú de pausa y de las opciones. `--pad-test`: prueba el mando en la estación (RB, A sobre una pestaña, Start y cruceta en las opciones). `--perf-log`: FPS, enemigos y balas cada 10 s. `--game-over-screenshot=<png>`: captura de la pantalla de nave destruida (con `--destroy-at` o `--autopilot` se reaparece sola).
-- Equilibrio (fase 6): `--balance-run` imprime una línea `balance …` (sobrevivió, casco, daño por origen, chatarra) al recargarse el combustible o al perder la nave, y se cierra. `--time-scale=N` acelera el tiempo (prueba típica: `--headless -- --start-stage --autopilot --balance-run --time-scale=6`, unos 30 s). `--starter-shield` monta un generador de escudo en la nave inicial.
+- Equilibrio (fase 6): `--balance-run` imprime una línea `balance …` (sobrevivió, casco, daño por origen, chatarra) al recargarse el combustible o al perder la nave, y se cierra. `--time-scale=N` acelera el tiempo (prueba típica: `--headless -- --start-stage --autopilot --balance-run --time-scale=6`, unos 30 s). `--starter-shield` monta un generador de escudo en la nave inicial. `--player-damage=F`: la nave recibe esa fracción del daño (imita a un jugador que esquiva mejor que el piloto). `--no-death`: el núcleo no baja de 1 y se cuenta un «casi muere».
+- `--balance-career [--career-hours=16] [--time-scale=12]`: simula una partida entera (`scripts/tests/balance_career.gd`): un jugador cuidadoso con el piloto automático (`--player-damage=0.08` y `--no-death` por defecto) juega, vende, repara (o repara lo que alcance), contrata artilleros, compra según una lista fija y anota cuándo llega a cada hito. Escribe `user://balance_career.csv` (o `--career-out=`) e imprime líneas `career …` con chatarra, reparación, piezas rotas y daño por origen. Con `--headless`, 8 h de juego tardan unos 50 min; se pueden correr dos a la vez con `--save-path` y `--career-out` distintos.
+- `--balance-set=campo:valor,campo:valor`: cambia valores de `StageBalanceData` solo en esa ejecución (para comparar sin tocar el `.tres`).
 - Al destruirse la nave se imprime `ship destroyed at t=...`. `--spawn-log`: cuántos enemigos de cada tipo aparecen cada 30 s. `--invulnerable`: la nave no recibe daño (para revisar un nivel entero). `--burst=N` con `--screenshot`: guarda N fotogramas seguidos en una cuadrícula, para revisar efectos que duran un fotograma.
 
 Los mensajes «Unreferenced static string» o «RID allocations leaked» al cortar Godot con `timeout` son del cierre forzado, no del código.

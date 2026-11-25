@@ -317,7 +317,7 @@ func _spawn_boss() -> void:
 		return
 	boss = Boss.new()
 	boss.boss_name = zone.boss_name
-	boss.setup(data, self, 1.0 + 0.5 * float(difficulty - 1), false)
+	boss.setup(data, self, 1.0 + Catalog.balance.boss_hp_per_difficulty * float(difficulty - 1), false)
 	var a := randf() * TAU
 	boss.position = ship.global_position + Vector3(cos(a), 0, sin(a)) * (spawn_distance() + 2.0)
 	enemy_root.add_child(boss)

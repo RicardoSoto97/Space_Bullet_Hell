@@ -228,6 +228,9 @@ func _fill_mechanic() -> void:
 	var repair := _button(_mechanic_box, "Reparar la nave (%d créditos)" % cost if cost > 0 else "La nave está intacta",
 			_on_repair)
 	repair.disabled = cost <= 0 or cost > GameState.money
+	# Sin dinero para todo, se repara lo que alcance: la vida primero y luego lo perdido.
+	if cost > GameState.money and GameState.money > 0:
+		_button(_mechanic_box, "Reparar lo que alcance (%d créditos)" % GameState.money, _on_repair_partial)
 	_wrap(_mechanic_box, _ship_summary(), 13, COLOR_DIM)
 	if _notice != "":
 		_text(_mechanic_box, _notice, 14, COLOR_WARN)
@@ -530,6 +533,11 @@ func _on_sell() -> void:
 
 func _on_repair() -> void:
 	_ok(GameState.repair_all(), &"ui_install")
+	refresh()
+
+
+func _on_repair_partial() -> void:
+	_ok(GameState.repair_affordable() > 0, &"ui_install")
 	refresh()
 
 

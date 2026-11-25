@@ -1,6 +1,6 @@
 # Contexto del juego para IA: Bullet Hell Survivor
 
-> Este es el contexto del juego pensado para asistentes de IA. La fuente de verdad del diseño es `docs/GDD_Bullet_Hell_Survivor.docx` (v0.32, 20/11/2026). Si este archivo y el GDD no coinciden, gana el GDD: avisa al usuario de la diferencia.
+> Este es el contexto del juego pensado para asistentes de IA. La fuente de verdad del diseño es `docs/GDD_Bullet_Hell_Survivor.docx` (v0.33, 25/11/2026). Si este archivo y el GDD no coinciden, gana el GDD: avisa al usuario de la diferencia.
 
 ## Cómo usar este archivo
 
@@ -40,7 +40,7 @@ Hay dos recursos distintos; no los mezcles:
 | Núcleo de energía | `energy_core` | `elite` | 25 | Rara |
 | Tecnología alienígena | `alien_tech` | `boss` | 100 | Muy rara |
 
-- `[PROPUESTA]` Cada estación paga un poco más o menos por cada tipo. Un nivel cercano (5 min) da unos 300 créditos; uno lejano (30 min) da varias veces más.
+- `[PROPUESTA]` Cada estación paga un poco más o menos por cada tipo. Un nivel cercano (5 min) da unos 800 créditos de chatarra (550–1.100; unos 600 después de reparar) y uno de 10 min, unos 3.500 (2.500 netos), medido con `--balance-career` en la 0.1.0; uno lejano (30 min) da varias veces más.
 ## Bucle principal `[DEFINIDO]`
 
 1. En el **mapa estelar** (tecla M), el jugador elige una zona de enemigos (un nivel, `stage`) y salta hasta ella con el **motor interestelar** (`interstellar_drive`).
@@ -244,6 +244,7 @@ Si el casco llega a 0, la nave se destruye **por completo**:
   - `[PROPUESTA]` Costos: estructura nueva 150 puntos; estructura de tripulación 300; arma o motor de propulsión nuevo 500; pieza avanzada 1.000; depósitos de combustible 400 a 12.000 (ver «El motor y el combustible interestelar»).
   - `[DEFINIDO]` Los puntos **solo se generan con el juego abierto**. No hay progreso con el juego cerrado: no lo implementes.
 - `[DEFINIDO]` **Reparar cuesta 2 créditos por punto de vida.** Reconstruir una pieza perdida cuesta el 50 % de su precio; una destruida, el 100 % (con su arma si era una estación de mando).
+- `[PROPUESTA]` Si el dinero no alcanza para todo, el botón «Reparar lo que alcance» (`GameState.repair_affordable`) arregla primero la vida de las piezas en pie (el núcleo primero) y después reconstruye lo perdido, desde el núcleo hacia afuera.
 - `[DEFINIDO]` **Si la nave se queda sin armas útiles**, en la estación se vuelve gratis a la nave inicial (nunca queda atascado sin dinero ni armas).
 - `[DEFINIDO]` **El mecánico también mejora piezas:** sube de nivel armas y estructuras con función, y evoluciona las armas al nivel 10. Ver «Mejoras y evoluciones».
 - `[DEFINIDO]` **Por ahora, todas las estaciones son iguales** (mismos servicios y precios).
@@ -354,7 +355,7 @@ Armas de ciencia ficción: metralletas, lanzacohetes, láseres y otras. Tienen n
 - La maniobrabilidad depende de los propulsores que tenga la nave. Se pueden instalar más en la estación.
 - **Propulsor pequeño** (`thruster_small`): viene con la nave inicial y también se vende. **Propulsor mediano** (`thruster_medium`): un poco más de maniobrabilidad.
 - `[POR DEFINIR]` Dónde se acoplan, si también aumentan la velocidad y si tienen niveles.
-- `[PROPUESTA]` Mientras tanto, en el código: se acoplan en cualquier ranura lateral, suman velocidad (pequeño +1,5; mediano +2,5) y no tienen niveles.
+- `[PROPUESTA]` Mientras tanto, en el código: se acoplan en cualquier ranura lateral, suman velocidad (pequeño +1,5; mediano +2,5) y no tienen niveles. Vida: pequeño 70, mediano 100, grande 130 (antes 30, 45, 60). La estación de mando tiene 150 de vida (antes 90).
 - `[DEFINIDO]` El **motor interestelar** (`interstellar_drive`) no es un motor de propulsión (`engine`) y no se cambia: lo que se acopla y se mejora es el depósito de combustible interestelar. Ver «El motor y el combustible interestelar».
 
 ### Tripulantes
@@ -433,7 +434,7 @@ Tipos: `swarm` (drones en masa que persiguen), `tank` (lentos y resistentes), `g
 ### Enemigos de zonas lejanas `[DEFINIDO]`
 - Hay que inventar **tipos nuevos** para las zonas lejanas y modelarlos en Blender (lo decide el asistente y se los propone al usuario).
 - `[PROPUESTA]` Los tres de la fase 3 (`EnemyData.min_difficulty`): **lancero** (`lancer`, desde zonas de 10 min: se detiene a apuntar y embiste), **divisor** (`splitter`, desde 15 min: se divide en 4 drones al morir) y **sembrador** (`mine_layer`, desde 20 min: deja minas y dispara abanicos de 5 balas).
-- `[PROPUESTA]` Dificultad de la zona (1 a 6 = distancia ÷ 5). Por cada punto: +45 % de vida, +15 % de enemigos y +12 % de cadencia de sus balas. En los niveles de más de 5 minutos la presión sigue subiendo al 35 %.
+- `[PROPUESTA]` Dificultad de la zona (1 a 6 = distancia ÷ 5). Por cada punto: +30 % de vida, +10 % de enemigos y +12 % de cadencia de sus balas (antes +45 % y +15 %; en `data/balance/stage_balance.tres`). El lancero hace 10 de daño cada 0,8 s mientras toca la nave (antes 14 cada 0,4 s: era el que más daño hacía en las zonas de 10 min). En los niveles de más de 5 minutos la presión sigue subiendo al 35 %.
 La dificultad sube **con cada nivel y con el tiempo dentro del nivel**: más enemigos, más resistentes, **más grandes** y con patrones de balas más densos.
 `[DEFINIDO]` **Las zonas más lejanas del mapa son más difíciles:** más tipos de enemigos distintos y balas con más cadencia.
 
@@ -476,7 +477,7 @@ Moverse con WASD / flechas / stick izquierdo. **Apuntar la nave con el ratón** 
 - `[PROPUESTA]` **Modelos 3D:** se generan con `tools/blender/build_parts.py` (Blender por script) y se exportan a `assets/models/parts/<id>.glb`. Escala: 1 cubo de pasillo = 1 m. Ejes: el frente de la pieza es -Z en Godot (+Y en Blender). Vista previa en Godot: `scenes/tests/parts_preview.tscn`.
 - `[PROPUESTA]` Mapa estelar 3D como escena aparte con cámara orbital.
 - `[DEFINIDO]` **Guardado:** una sola partida, que se guarda sola al llegar a una estación; al abrir el juego aparece «Continuar». Se guardan el dinero, la nave, los tripulantes, los niveles, lo desbloqueado, el mapa (jefes derrotados) y las bases. También se guarda al aterrizar en una base.
-- **Estado del código:** fases 1 a 4 hechas: nivel con nave modular, chatarra y HUD; estación con editor de la nave por ranuras, bar, armas y evoluciones; guardado con pantalla de inicio; mapa estelar 3D con 8 sistemas y fichas; viajes y dificultad por distancia; tres enemigos de zonas lejanas y el jefe; bases en 3D con los 8 edificios, minerales, investigación, planos y reconstrucción, tripulantes en los edificios y enfermería. Fase 5 (pulido) hecha: menús (inicio, pausa, opciones, fin de partida), opciones con teclas configurables, sonidos, efectos visuales y mando en todas las interfaces. Fase 6 en curso: hechos el generador de escudo, la mejora del núcleo, el dinero inicial (1.000) y la primera bajada de dificultad del primer nivel; faltan las rondas de equilibrio y el cierre de la 0.1.0 (ver `docs/PLAN_DESARROLLO.md`). La base se rediseña en la 0.2.0. Las decisiones del prototipo que el GDD no fija están en `docs/PLAN_DESARROLLO.md` (fase 4, «Cómo está hecho»).
+- **Estado del código:** fases 1 a 4 hechas: nivel con nave modular, chatarra y HUD; estación con editor de la nave por ranuras, bar, armas y evoluciones; guardado con pantalla de inicio; mapa estelar 3D con 8 sistemas y fichas; viajes y dificultad por distancia; tres enemigos de zonas lejanas y el jefe; bases en 3D con los 8 edificios, minerales, investigación, planos y reconstrucción, tripulantes en los edificios y enfermería. Fase 5 (pulido) hecha: menús (inicio, pausa, opciones, fin de partida), opciones con teclas configurables, sonidos, efectos visuales y mando en todas las interfaces. Fase 6 hecha: generador de escudo, mejora del núcleo, dinero inicial (1.000), bajada de dificultad del primer nivel, simulación de partida entera (`--balance-career`) y cinco rondas de equilibrio (resultados y pendientes en `docs/PLAN_DESARROLLO.md`). Versión 0.1.0 cerrada (en el menú y en la rama `v0.1.0`). La base se rediseña en la 0.2.0. Las decisiones del prototipo que el GDD no fija están en `docs/PLAN_DESARROLLO.md` (fase 4, «Cómo está hecho»).
 - `[PROPUESTA]` Movimiento suave: la interpolación física está activada (`physics/common/physics_interpolation`). Lo que se mueve fuera de los ticks de física (cámara, tweens, rayos) va con la interpolación desactivada, y lo que se teletransporta llama a `reset_physics_interpolation()`.
 - Estructura de carpetas: `scenes/`, `scripts/`, `assets/sprites/`, `assets/audio/`, `docs/`. La carpeta `docs/` tiene `.gdignore` y Godot no la importa.
 

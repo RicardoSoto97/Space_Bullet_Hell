@@ -185,6 +185,9 @@ static func input_name(ev: InputEvent) -> String:
 				KEY_UP: "↑", KEY_DOWN: "↓", KEY_LEFT: "←", KEY_RIGHT: "→"}
 		if names.has(code):
 			return names[code]
+		# Sin pantalla (pruebas con --headless) no hay distribución de teclado.
+		if DisplayServer.get_name() == "headless":
+			return OS.get_keycode_string(code)
 		return OS.get_keycode_string(DisplayServer.keyboard_get_keycode_from_physical(code))
 	if ev is InputEventJoypadButton:
 		var buttons := {JOY_BUTTON_A: "A", JOY_BUTTON_B: "B", JOY_BUTTON_X: "X", JOY_BUTTON_Y: "Y",

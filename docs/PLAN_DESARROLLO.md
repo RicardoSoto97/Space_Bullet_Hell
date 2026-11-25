@@ -262,7 +262,7 @@ Decisiones del prototipo (propuestas, en el GDD v0.31): salir al menú desde un 
   5. ¿Se hace ya el mando en todas las interfaces y la investigación de Android, o se deja para después?
   6. Si hay cambios de equilibrio tras sus pruebas de las fases 3 y 4 (dificultad, precios, tiempos de la base).
 
-## Fase 6: equilibrio, generador de escudo y cierre de la 0.1.0 (en curso)
+## Fase 6: equilibrio, generador de escudo y cierre de la 0.1.0 (hecha, 25/11/2026)
 
 ### Respuestas del usuario (20/11/2026, GDD v0.32)
 
@@ -294,12 +294,54 @@ Decisiones del prototipo (propuestas, en el GDD v0.31): salir al menú desde un 
 - **Ojo:** el piloto automático sigue siendo peor que una persona (no sabe usar el cono de disparo y los drones lo rodean). Sirve para comparar cambios; la prueba del usuario manda.
 - **Chatarra:** al morir a los 3 minutos ya lleva 300–480 créditos de chatarra. Un nivel completo de 5 minutos da bastante más que los ~300 del GDD: revisarlo en las rondas de equilibrio.
 
-### Siguiente
+### Prueba del usuario (antes de las rondas)
 
-1. El usuario prueba el primer nivel con los cambios (y los 1.000 iniciales).
-2. Poner el proyecto en git (el usuario pasa el repositorio).
-3. `--balance-career` (partida entera simulada) y rondas de equilibrio contra los hitos.
-4. Cierre de la 0.1.0.
+El primer nivel con la nave inicial «es desafiante pero es pasable completamente», y el sonido se escucha bien. Se mantiene así.
+
+### Simulación de partida entera (`--balance-career`, `scripts/tests/balance_career.gd`)
+
+- Un «jugador cuidadoso» con el piloto automático juega niveles; en cada estación vende, repara (o repara lo que alcance), contrata artilleros para las estaciones sin tripulante, aparta una reserva para reparar y compra según una lista fija: núcleo 2, metralleta extra, armas a 3, Depósito I, placas de blindaje en pasillos y núcleo, núcleo 4, láser, armas a 5, primera base (12.500 apartados, no se construye), Depósito II, evolución, Depósito III, núcleo 6, lanzacohetes, armas a 7, Depósito IV, armas a 10, Depósito V, núcleo 10.
+- Va más lejos tras dos niveles limpios con al menos el 50 % del casco, solo si ya compró lo que pide esa distancia (`TIER_STEPS`), y vuelve a 5 min si casi muere. Al jefe va solo con la nave de la distancia siguiente; si no cae en 4 min, huye.
+- **Calibración:** recibe el 8 % del daño del piloto (`--player-damage=0.08`). Con eso el primer nivel con la nave inicial pierde el 30–50 % del casco, como pide el GDD 2.4. Con el 12 % perdía el 60–90 %.
+- Sin hangar, si se queda sin un arma con artillero vuelve a la nave inicial (`abandon_ship`) y empieza la lista de nuevo. Es lo que más frena la partida simulada.
+
+### Rondas de equilibrio (hasta el 25/11/2026)
+
+| Ronda | Cambio | Qué pasó |
+|---|---|---|
+| 0 | Números de la v0.32, daño 12 % | En 16 h no salió de la nave inicial. El propulsor pequeño (30 de vida, 250 créditos) se destruía casi siempre y la estación de mando muchas veces: reparar costaba 600–1.100 por nivel, más de lo que se ganaba (550–900). |
+| 1 | Propulsores 30/45/60 → 70/100/130 de vida; simulación al 8 %; no va lejos sin mejorar | Primer nivel 0:06, primera arma extra 0:12–0:24, Depósito I 0:36–0:42. Atasco en las zonas de 10 min: casi muere siempre. |
+| 2 | Comparar +45/+15 % por dificultad contra +30/+10 % | Poca diferencia. El daño por origen muestra al **lancero** como el que más pega (14 cada 0,4 s pegado a la nave): de 180 a 1.000 por nivel. |
+| 3 | Lancero 14 cada 0,4 s → 10 cada 0,8 s; «reparar lo que alcance» | Mejor, pero en cada zona de 10 min se rompen los pasillos (40 de vida) con las estaciones de mando que cuelgan de ellos: 2.000 de reparación. |
+| 4 | El simulador pone placas de blindaje | El núcleo queda al 90 %, pero las tres estaciones de mando se destruyen en cada zona de 10 min. |
+| 5 | Estación de mando 90 → 150 de vida; +30/+10 % por dificultad | **Con +30/+10 % la zona de 10 min se vuelve rentable** (3.500 de chatarra, 500–1.000 de reparación). Primera base a las 3:05 y primera evolución a las 5:50. Con +45/+15 % sigue atascada. |
+
+**Hitos medidos (ronda 5, números de la 0.1.0) contra los objetivos del GDD 2.4:**
+
+| Hito | Objetivo | Medido |
+|---|---|---|
+| Primer nivel con la nave inicial | Perder 30–60 % del casco | 30–40 % (0:06) |
+| Primera arma extra | 2 o 3 niveles | 2 niveles (0:12) |
+| Depósito I | ~30 min | 0:42 |
+| Primera base útil | ~2 h | 3:05 |
+| Primera evolución | 4–5 h | 5:50 |
+| Zonas de 30 min y último jefe | 10–15 h | No llegó: atasco en las zonas de 15 min |
+
+**Números que quedan en la 0.1.0** (todos `[PROPUESTA]`, en datos): propulsores 70/100/130 de vida, estación de mando 150, lancero 10 de daño cada 0,8 s, `hp_per_difficulty` 0,3, `rate_per_difficulty` 0,1. Se quitó `scrap_per_difficulty` (no se usaba). Los ingresos se dejaron como están: con ellos los primeros hitos caen donde pide el GDD. El «unos 300 créditos por nivel» del GDD pasa a «unos 800» (lo medido).
+
+### Pendiente para la 0.2.0 (o para otra ronda de equilibrio)
+
+1. **Zonas de 15 min:** al llegar con un arma evolucionada, una estación de mando destruida cuesta 12.000–15.000 en reparación (el arma evolucionada vale el arma base + 12.000 y se compra entera). Una mala partida borra horas de progreso. Hay que decidir con el usuario: ¿reconstruir una evolución más barato, o que el arma no se pierda al destruirse su estación?
+2. **El lancero** sigue siendo el que más daño hace en todas las zonas lejanas.
+3. **Lo que más frena la partida es volver a la nave inicial:** sin hangar se pierden las mejoras del núcleo y de las armas. La simulación no construye bases (solo aparta el dinero), así que no usa el hangar ni la enfermería. Simular la base de verdad haría más fiable la parte de 3 h en adelante.
+4. Las piezas que sobresalen (pasillos de 40 de vida con estaciones de mando) son lo primero que se rompe; las placas de blindaje solo protegen el pasillo.
+
+### Cierre técnico de la 0.1.0
+
+- Versión `0.1.0` en `project.godot` (`application/config/version`); el menú principal la muestra abajo a la derecha.
+- `export_presets.cfg`: preset «Windows Desktop» → `builds/windows/BulletHellSurvivor.exe` (un solo .exe con el .pck dentro; sin `docs/` ni `tools/`). Faltan las plantillas de exportación de Godot 4.7.2 en este equipo (solo están las de 4.4.1).
+- Git: `https://github.com/RicardoSoto97/Space_Bullet_Hell`, ramas `main` y `v0.1.0`. No se creó una etiqueta `v0.1.0`, porque tendría el mismo nombre que la rama.
+- Pruebas sin pantalla: `Settings.input_name` ya no pide la distribución del teclado con `--headless` (daba «Not supported by this display server»).
 
 ## Diseño de la fase 6 (19/11/2026)
 
@@ -344,7 +386,7 @@ En el GDD solo dice: «pieza avanzada: un escudo que absorbe daño y se recarga�
 
 | Hito | Objetivo |
 |---|---|
-| Primer nivel de 5 min con la nave inicial | Sobrevive perdiendo entre el 30 y el 60 % del casco; gana unos 300 créditos (GDD) |
+| Primer nivel de 5 min con la nave inicial | Sobrevive perdiendo entre el 30 y el 60 % del casco; gana unos 300 créditos (GDD; medido en la 0.1.0: unos 800) |
 | Primera arma extra (estación de mando, arma y tripulante) | 2 o 3 niveles |
 | Depósito I (1.500 créditos), zonas de 10 min | Unos 30 min |
 | Primera base útil (terreno de asteroide, cargador, refinería y puerto, unos 12.500) | Unas 2 h |

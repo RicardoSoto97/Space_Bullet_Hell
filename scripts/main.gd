@@ -4,7 +4,7 @@ extends Control
 ## pruebas de la estación empiezan una partida nueva.
 
 const STAR_SHADER := preload("res://scripts/stage/star_background.gdshader")
-const TEST_ARGS: Array[String] = ["build-test", "auto-station", "station-screenshot", "auto-jump", "map-test", "pad-test"]
+const TEST_ARGS: Array[String] = ["build-test", "auto-station", "station-screenshot", "auto-jump", "map-test", "pad-test", "balance-career"]
 
 var _confirm: ConfirmationDialog
 
@@ -72,6 +72,15 @@ func _build_ui() -> void:
 		new_b.grab_focus.call_deferred()
 	_menu_button(box, "Opciones", _open_options)
 	_menu_button(box, "Salir", func() -> void: get_tree().quit())
+
+	# Versión del juego (`application/config/version`), abajo a la derecha.
+	var version := Label.new()
+	version.text = "v" + str(ProjectSettings.get_setting("application/config/version", "?"))
+	version.add_theme_font_size_override(&"font_size", 14)
+	version.add_theme_color_override(&"font_color", Color(0.6, 0.68, 0.8))
+	add_child(version)
+	StageHud._place(version, Control.PRESET_BOTTOM_RIGHT, Rect2(-90, -34, 74, 22))
+	version.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 
 	_confirm = ConfirmationDialog.new()
 	_confirm.title = "Nueva partida"

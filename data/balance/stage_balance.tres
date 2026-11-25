@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="StageBalanceData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/stage_balance_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+base_rate = 1.1
+rate_per_minute = 0.4
+max_alive = 160
+hp_per_minute = 0.12
+elite_chance = 0.04
+elite_chance_per_difficulty = 0.01
+wave_interval = 50.0
+wave_interval_growth = 15.0
+wave_size = 10
+wave_size_per_minute = 3.0
+pressure_full_minutes = 5.0
+pressure_slope_after = 0.35
+hp_per_difficulty = 0.3
+rate_per_difficulty = 0.1
+fire_rate_per_difficulty = 0.12
+boss_hp_per_difficulty = 0.5

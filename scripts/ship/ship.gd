@@ -50,6 +50,9 @@ var _shield_glow: float = 0.0
 var _shield_bubble: MeshInstance3D
 ## Para las pruebas de equilibrio: daño que recibieron las piezas y el que paró el escudo.
 var damage_taken: float = 0.0
+## Simulaciones (`no-death`): veces que el núcleo habría llegado a 0.
+var near_deaths: int = 0
+var _last_near_death: float = -10.0
 ## Daño por origen (balas, choques de cada enemigo). Lo fija quien hace el daño justo antes.
 var damage_log: Dictionary[StringName, float] = {}
 static var damage_source: StringName = &"other"
@@ -306,15 +309,21 @@ func _autopilot_avoid() -> Vector2:
 			if p == null or not p.active or p.from_player:
 				continue
 			var d := me - Vector2(p.global_position.x, p.global_position.z)
-			var dist := d.length()
 			var v := Vector2(p.velocity().x, p.velocity().z)
-			if dist > 4.0 or dist < 0.01 or v.dot(d) <= 0.0:
+			var speed2 := v.length_squared()
+			if speed2 < 0.01 or d.length_squared() > 100.0:
 				continue
-			# Se aparta de lado respecto a la trayectoria de la bala.
-			var side := v.orthogonal().normalized()
-			if side.dot(d) < 0.0:
-				side = -side
-			avoid += side * (4.0 - dist) / 4.0
+			# Cuándo pasa más cerca de la nave y a qué distancia: solo esquiva las que van a darle.
+			var t := d.dot(v) / speed2
+			if t <= 0.0 or t > 1.4:
+				continue
+			var miss := d - v * t
+			var miss_len := miss.length()
+			if miss_len > 1.8:
+				continue
+			# Se aparta de lado respecto a la trayectoria, hacia donde ya iba a pasar la bala de largo.
+			var side := miss / miss_len if miss_len > 0.01 else v.orthogonal().normalized()
+			avoid += side * (1.8 - miss_len) / 1.8 / (t + 0.25)
 	for e: Node3D in get_tree().get_nodes_in_group(&"enemies"):
 		var d := me - Vector2(e.global_position.x, e.global_position.z)
 		var dist := d.length()
@@ -340,6 +349,14 @@ func _nearest_enemy() -> Node3D:
 			best = d
 			nearest = e
 	return nearest
+
+
+## Simulaciones (`no-death`): el núcleo queda con 1 de vida y se cuenta un «casi muere»
+## (como mucho uno cada 5 s).
+func on_near_death() -> void:
+	if _time - _last_near_death > 5.0:
+		near_deaths += 1
+	_last_near_death = _time
 
 
 func on_part_damaged(_part: ShipPart) -> void:
