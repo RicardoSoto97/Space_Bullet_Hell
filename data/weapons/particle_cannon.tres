@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/parts/particle_cannon.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"particle_cannon"
+display_name = "Cañón de partículas"
+model = ExtResource("2")
+kind = 0
+price = 900
+damage = 30
+fire_interval = 0.9
+projectile_speed = 40
+weapon_range = 16
+projectile_color = Color(0.75, 0.45, 1, 1)
+spread_degrees = 1
+aim_cone_degrees = 50
+area_radius = 0
+area_per_level = 0
+beam_width = 0.3
+evolves_into = &""
+for_sale = false
+barrels = 1
+projectile_scale = 1
+research_points = 500
+pierce = 4
+pellets = 1
+pellet_spread_degrees = 0

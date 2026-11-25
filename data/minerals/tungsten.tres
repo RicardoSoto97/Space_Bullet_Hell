@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MineralData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/mineral_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"tungsten"
+display_name = "Tungsteno"
+price = 37
+color = Color(0.45, 0.5, 0.58, 1)
+source_scrap = &"heavy_plating"
+source_amount = 5
+mine_weight = 12

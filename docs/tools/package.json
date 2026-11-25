@@ -1,0 +1,1 @@
+{ "private": true, "description": "Generador del GDD", "dependencies": { "docx": "^9.5.1" } }

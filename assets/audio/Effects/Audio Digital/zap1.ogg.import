@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bhbqdof2wa6bo"
+path="res://.godot/imported/zap1.ogg-a6aae3536e044126520b8eb0c4e86f6f.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Effects/Audio Digital/zap1.ogg"
+dest_files=["res://.godot/imported/zap1.ogg-a6aae3536e044126520b8eb0c4e86f6f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

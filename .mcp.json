@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "godot": {
+      "command": "node",
+      "args": ["D:/1.Documentos/2. Development/godot-mcp/build/index.js"],
+      "env": {
+        "GODOT_PATH": "D:/1.Documentos/2. Development/Godot/Godot_v4.7.2-stable_win64.exe"
+      }
+    },
+    "blender": {
+      "command": "D:/1.Documentos/2. Development/blender-mcp/venv/Scripts/mcp-for-blender.exe",
+      "args": [],
+      "env": {
+        "DISABLE_TELEMETRY": "true",
+        "BLENDER_MCP_DISABLE_TELEMETRY": "true",
+        "MCP_DISABLE_TELEMETRY": "true"
+      }
+    },
+    "blockbench": {
+      "type": "http",
+      "url": "http://localhost:3000/bb-mcp"
+    }
+  }
+}

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="PartData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/part_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/parts/corridor_1x3.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"corridor_1x3"
+display_name = "Pasillo triple"
+category = 1
+model = ExtResource("2")
+price = 210
+for_sale = true
+has_levels = false
+max_hp = 100
+hull_bonus = 60
+armor = 0
+handling = 0
+speed = 0
+pickup_radius = 0
+crew_capacity = 0
+crew_bonus_per_level = 0
+collision_size = Vector3(0.92, 0.84, 3)
+collision_offset = Vector3(0, 0, 0)
+weapon_offset = Vector3(0, 0, 0)
+slot_positions = PackedVector3Array(0, 0, -1.5, 0, 0, 1.5, -0.46, 0, -1, 0.46, 0, -1, -0.46, 0, 0, 0.46, 0, 0, -0.46, 0, 1, 0.46, 0, 1, 0, 0.42, -1, 0, -0.42, -1, 0, 0.42, 0, 0, -0.42, 0, 0, 0.42, 1, 0, -0.42, 1)
+slot_normals = PackedVector3Array(0, 0, -1, 0, 0, 1, -1, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0, 0, -1, 0, 0, 1, 0, 0, -1, 0)
+slot_kinds = PackedInt32Array(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1)
+mount_slot = 1
+research_points = 0
+upgrade_base_cost = 0
+upgrade_growth = 0
+hp_per_level = 0
+crew_per_level = 0
+shield_capacity = 0
+shield_per_level = 0
+shield_recharge = 0
+shield_delay = 0
+shield_break_delay = 0
+unique = false
+face_only = false

@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/enemies/enemy_gunner.glb" id="2"]
+[ext_resource type="Resource" path="res://data/scrap/electronics.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"gunner"
+display_name = "Artillero"
+model = ExtResource("2")
+behavior = 1
+motion = 2
+max_hp = 22.0
+speed = 4.0
+turn_speed = 3.0
+collision_radius = 0.65
+contact_damage = 6.0
+dies_on_contact = false
+contact_interval = 0.6
+preferred_distance = 9.0
+fire_interval = 2.4
+bullets_per_burst = 8
+bullet_speed = 7.0
+bullet_damage = 4.0
+spawn_weight = 2.0
+min_stage_time = 90.0
+spawn_ramp_seconds = 150.0
+common_scrap = 2
+special_scrap = ExtResource("3")
+special_amount = 1
+special_chance = 0.7

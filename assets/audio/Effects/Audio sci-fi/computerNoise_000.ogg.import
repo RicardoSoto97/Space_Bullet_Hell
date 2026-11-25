@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bfjec6gkqovsy"
+path="res://.godot/imported/computerNoise_000.ogg-8c354ef48e1291d672d60fefaa8d9c1b.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Effects/Audio sci-fi/computerNoise_000.ogg"
+dest_files=["res://.godot/imported/computerNoise_000.ogg-8c354ef48e1291d672d60fefaa8d9c1b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

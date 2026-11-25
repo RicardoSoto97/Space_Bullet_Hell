@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c6rv824a0d0l8"
+path="res://.godot/imported/spaceTrash1.ogg-91819d0fe0240eccc6505ec8dcdb9d38.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Effects/Audio Digital/spaceTrash1.ogg"
+dest_files=["res://.godot/imported/spaceTrash1.ogg-91819d0fe0240eccc6505ec8dcdb9d38.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

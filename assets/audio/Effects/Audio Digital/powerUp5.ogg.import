@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c21q3yixd3cge"
+path="res://.godot/imported/powerUp5.ogg-0e21fa02e429c1ced413381815fe3c4c.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Effects/Audio Digital/powerUp5.ogg"
+dest_files=["res://.godot/imported/powerUp5.ogg-0e21fa02e429c1ced413381815fe3c4c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/parts/rocket_launcher.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"rocket_launcher"
+display_name = "Lanzacohetes"
+model = ExtResource("2")
+kind = 1
+price = 600
+damage = 26
+fire_interval = 1.5
+projectile_speed = 12
+weapon_range = 14
+projectile_color = Color(1, 0.5, 0.15, 1)
+spread_degrees = 2
+aim_cone_degrees = 50
+area_radius = 2.2
+area_per_level = 0.05
+beam_width = 0.3
+evolves_into = &"tsar_launcher"
+for_sale = true
+barrels = 1
+projectile_scale = 1
+research_points = 0
+pierce = 0
+pellets = 1
+pellet_spread_degrees = 0

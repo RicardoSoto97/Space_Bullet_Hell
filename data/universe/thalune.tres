@@ -1,0 +1,188 @@
+[gd_resource type="Resource" script_class="StarSystemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/star_system_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/celestial_body_data.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/data/station_data.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/data/zone_data.gd" id="4"]
+
+[sub_resource type="Resource" id="body_0"]
+script = ExtResource("2")
+id = &"thalune_star"
+display_name = "Thalune"
+kind = 0
+description = "Estrella blanca azulada, joven y muy brillante. Su radiación quema los cascos sin blindaje."
+parent = &""
+orbit_radius = 0
+orbit_angle = 0
+orbit_speed = 0
+radius = 2.6
+color = Color(0.8392, 0.902, 1, 1)
+color2 = Color(0.498, 0.6902, 1, 1)
+has_rings = false
+habitable = false
+temperature = 9200
+land_price = 0
+
+[sub_resource type="Resource" id="body_1"]
+script = ExtResource("2")
+id = &"thalune_ixo"
+display_name = "Ixo"
+kind = 1
+description = "Roca desnuda tan cerca de su estrella que la superficie brilla de calor. Nada sobrevive aquí."
+parent = &""
+orbit_radius = 5
+orbit_angle = 220
+orbit_speed = 1.9677
+radius = 0.5
+color = Color(0.7882, 0.7529, 0.7098, 1)
+color2 = Color(0.7882, 0.7529, 0.7098, 1)
+has_rings = false
+habitable = false
+temperature = 420
+land_price = 0
+
+[sub_resource type="Resource" id="body_2"]
+script = ExtResource("2")
+id = &"thalune_nere"
+display_name = "Neré"
+kind = 1
+description = "Planeta oceánico con archipiélagos de roca negra. El agua es potable y las tormentas, cortas."
+parent = &""
+orbit_radius = 9.5
+orbit_angle = 20
+orbit_speed = 0.7513
+radius = 1
+color = Color(0.2471, 0.4706, 0.6588, 1)
+color2 = Color(0.2471, 0.4706, 0.6588, 1)
+has_rings = false
+habitable = true
+temperature = 24
+land_price = 12000
+
+[sub_resource type="Resource" id="body_3"]
+script = ExtResource("2")
+id = &"thalune_gorm"
+display_name = "Gorm"
+kind = 2
+description = "Gigante gaseoso de tormentas eternas. No tiene superficie donde construir, aunque alguna de sus lunas sí."
+parent = &""
+orbit_radius = 15
+orbit_angle = 130
+orbit_speed = 0.3787
+radius = 2
+color = Color(0.7176, 0.6392, 0.8392, 1)
+color2 = Color(0.4784, 0.3922, 0.6588, 1)
+has_rings = true
+habitable = false
+temperature = -150
+land_price = 0
+
+[sub_resource type="Resource" id="body_4"]
+script = ExtResource("2")
+id = &"thalune_tali"
+display_name = "Tali"
+kind = 3
+description = "Luna templada por las mareas de su planeta. Cielos tranquilos y una vista privilegiada de las estrellas: ideal para investigar."
+parent = &"thalune_gorm"
+orbit_radius = 3.2
+orbit_angle = 60
+orbit_speed = 5.0312
+radius = 0.38
+color = Color(0.6549, 0.7804, 0.6902, 1)
+color2 = Color(0.6549, 0.7804, 0.6902, 1)
+has_rings = false
+habitable = true
+temperature = 4
+land_price = 6000
+
+[sub_resource type="Resource" id="body_5"]
+script = ExtResource("2")
+id = &"thalune_sorn"
+display_name = "Sorn"
+kind = 3
+description = "Luna estéril cubierta de cráteres y polvo fino."
+parent = &"thalune_gorm"
+orbit_radius = 4.2
+orbit_angle = 200
+orbit_speed = 4.3916
+radius = 0.26
+color = Color(0.5529, 0.5529, 0.5765, 1)
+color2 = Color(0.5529, 0.5529, 0.5765, 1)
+has_rings = false
+habitable = false
+temperature = -170
+land_price = 0
+
+[sub_resource type="Resource" id="body_6"]
+script = ExtResource("2")
+id = &"thalune_vespa"
+display_name = "Vespa"
+kind = 1
+description = "Planeta helado y silencioso. Bajo el hielo hay minerales, pero el frío es letal."
+parent = &""
+orbit_radius = 20
+orbit_angle = 300
+orbit_speed = 0.246
+radius = 0.6
+color = Color(0.8902, 0.9333, 0.9608, 1)
+color2 = Color(0.8902, 0.9333, 0.9608, 1)
+has_rings = false
+habitable = false
+temperature = -210
+land_price = 0
+
+[sub_resource type="Resource" id="station_0"]
+script = ExtResource("3")
+id = &"station_mirador_thalune"
+display_name = "Mirador Thalune"
+description = "Estación espacial con mecánico, bar y compra de chatarra. Sus cargadores rellenan el combustible interestelar al llegar."
+parent = &"thalune_nere"
+orbit_radius = 1.4
+orbit_angle = 200
+
+[sub_resource type="Resource" id="zone_0"]
+script = ExtResource("4")
+id = &"zone_vortice_ixo"
+display_name = "Vórtice de Ixo"
+description = "Corrientes de plasma alrededor de Ixo. Los enemigos usan el brillo para esconderse."
+parent = &"thalune_ixo"
+orbit_radius = 1.5
+orbit_angle = 40
+distance_minutes = 10
+boss = &""
+boss_name = ""
+
+[sub_resource type="Resource" id="zone_1"]
+script = ExtResource("4")
+id = &"zone_fortaleza_thalune"
+display_name = "Fortaleza de Thalune"
+description = "Una estación de guerra enemiga orbita la estrella. La defiende un acorazado."
+parent = &""
+orbit_radius = 12.5
+orbit_angle = 260
+distance_minutes = 10
+boss = &"boss_dreadnought"
+boss_name = "Acorazado Kraal"
+
+[sub_resource type="Resource" id="zone_2"]
+script = ExtResource("4")
+id = &"zone_fosa_gorm"
+display_name = "Fosa de Gorm"
+description = "Las capas altas de Gorm, donde la gravedad arrastra a los incautos hacia abajo."
+parent = &"thalune_gorm"
+orbit_radius = 6
+orbit_angle = 330
+distance_minutes = 15
+boss = &""
+boss_name = ""
+
+[resource]
+script = ExtResource("1")
+id = &"thalune"
+display_name = "Thalune"
+description = "Sistema de luz azul y fría. Una fortaleza enemiga vigila el paso hacia los sistemas lejanos."
+order = 3
+galaxy_position = Vector3(-532, -70, -560)
+bodies = Array[ExtResource("2")]([SubResource("body_0"), SubResource("body_1"), SubResource("body_2"), SubResource("body_3"), SubResource("body_4"), SubResource("body_5"), SubResource("body_6")])
+stations = Array[ExtResource("3")]([SubResource("station_0")])
+zones = Array[ExtResource("4")]([SubResource("zone_0"), SubResource("zone_1"), SubResource("zone_2")])

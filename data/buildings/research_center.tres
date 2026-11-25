@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/building_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/buildings/research_center.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"research_center"
+display_name = "Centro de investigación"
+description = "Investiga piezas, armas y depósitos nuevos, que quedan desbloqueados para siempre. Cada investigador genera (investigador ÷ 5) puntos por minuto; en un satélite, un 30 % más."
+model = ExtResource("2")
+price = 4000
+has_levels = true
+crew_stat = "research"
+crew_slots = 1
+extra_slot_levels = PackedInt32Array(4, 7)
+base_rate = 1
+rate_per_level = 0.1

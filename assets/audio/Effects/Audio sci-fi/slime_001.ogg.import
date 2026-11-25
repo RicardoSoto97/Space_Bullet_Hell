@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dhywd33m7lk06"
+path="res://.godot/imported/slime_001.ogg-d7202a79024030f1c2e39a7981b0a4c4.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Effects/Audio sci-fi/slime_001.ogg"
+dest_files=["res://.godot/imported/slime_001.ogg-d7202a79024030f1c2e39a7981b0a4c4.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

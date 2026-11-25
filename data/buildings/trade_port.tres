@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/building_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/buildings/trade_port.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"trade_port"
+display_name = "Puerto comercial"
+description = "Vende lo guardado en las bases: la chatarra, a peor precio que la estación, y los minerales puros, a su precio completo."
+model = ExtResource("2")
+price = 1500
+has_levels = true
+crew_stat = ""
+crew_slots = 0
+extra_slot_levels = PackedInt32Array()
+base_rate = 0.7
+rate_per_level = 0.02

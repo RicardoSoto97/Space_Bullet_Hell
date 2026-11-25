@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MineralData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/mineral_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"titanium"
+display_name = "Titanio"
+price = 15
+color = Color(0.72, 0.78, 0.86, 1)
+source_scrap = &"scrap_metal"
+source_amount = 10
+mine_weight = 60

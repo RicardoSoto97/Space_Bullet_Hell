@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ScrapTypeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/scrap_type_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"scrap_metal"
+display_name = "Metal común"
+price = 1
+color = Color(0.55, 0.57, 0.6, 1)
+glows = false

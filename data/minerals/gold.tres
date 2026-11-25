@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MineralData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/mineral_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"gold"
+display_name = "Oro"
+price = 22
+color = Color(1, 0.78, 0.25, 1)
+source_scrap = &"electronics"
+source_amount = 5
+mine_weight = 25

@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="PartData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/part_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/parts/command_station.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"command_station"
+display_name = "Estación de mando"
+category = 2
+model = ExtResource("2")
+price = 300
+for_sale = true
+has_levels = true
+max_hp = 90
+hull_bonus = 0
+armor = 0
+handling = 0
+speed = 0
+pickup_radius = 0
+crew_capacity = 0
+crew_bonus_per_level = 0
+collision_size = Vector3(0.9, 0.72, 0.9)
+collision_offset = Vector3(0, 0, 0)
+weapon_offset = Vector3(0, 0.02, -0.44)
+slot_positions = PackedVector3Array(0, 0, 0.46)
+slot_normals = PackedVector3Array(0, 0, 1)
+slot_kinds = PackedInt32Array(0)
+mount_slot = 0
+research_points = 0
+upgrade_base_cost = 0
+upgrade_growth = 0
+hp_per_level = 0
+crew_per_level = 0
+shield_capacity = 0
+shield_per_level = 0
+shield_recharge = 0
+shield_delay = 0
+shield_break_delay = 0
+unique = false
+face_only = false

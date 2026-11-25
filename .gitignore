@@ -1,0 +1,13 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+# Ejecutables exportados
+builds/
+# Dependencias de las herramientas (npm)
+node_modules/
+# Copias de seguridad de Blender
+*.blend1
+# Archivos de Windows
+desktop.ini
+Thumbs.db

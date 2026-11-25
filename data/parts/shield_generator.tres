@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="PartData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/part_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/parts/shield_generator.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"shield_generator"
+display_name = "Generador de escudo"
+category = 5
+model = ExtResource("2")
+price = 1800
+for_sale = false
+has_levels = true
+max_hp = 50
+hull_bonus = 0
+armor = 0
+handling = 0
+speed = 0
+pickup_radius = 0
+crew_capacity = 0
+crew_bonus_per_level = 0
+collision_size = Vector3(0.7, 0.34, 0.7)
+collision_offset = Vector3(0, 0, 0)
+weapon_offset = Vector3(0, 0, 0)
+slot_positions = PackedVector3Array(0, -0.17, 0)
+slot_normals = PackedVector3Array(0, -1, 0)
+slot_kinds = PackedInt32Array(1)
+mount_slot = 0
+research_points = 1000
+upgrade_base_cost = 0
+upgrade_growth = 0
+hp_per_level = 0
+crew_per_level = 0
+shield_capacity = 60
+shield_per_level = 0.15
+shield_recharge = 10
+shield_delay = 3
+shield_break_delay = 6
+unique = true
+face_only = true

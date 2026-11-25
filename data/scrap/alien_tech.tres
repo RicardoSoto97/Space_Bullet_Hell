@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ScrapTypeData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/scrap_type_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"alien_tech"
+display_name = "Tecnología alienígena"
+price = 100
+color = Color(0.85, 0.25, 1, 1)
+glows = true

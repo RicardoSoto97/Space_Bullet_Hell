@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/building_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/buildings/hangar.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"hangar"
+display_name = "Hangar"
+description = "Construye naves y fabrica sus piezas, también las investigadas. Guarda los planos de tus naves. Con un ingeniero asignado repara, mejora y reconstruye la nave como el mecánico de una estación."
+model = ExtResource("2")
+price = 5000
+has_levels = true
+crew_stat = "engineering"
+crew_slots = 1
+extra_slot_levels = PackedInt32Array(4, 7, 10)
+base_rate = 0.8
+rate_per_level = -0.02

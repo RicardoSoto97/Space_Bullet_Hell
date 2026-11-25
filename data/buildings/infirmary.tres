@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/building_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/buildings/infirmary.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"infirmary"
+display_name = "Enfermería"
+description = "Cura a los tripulantes heridos. Cada tripulante asignado cura a un herido a la vez: tarda 1.000 ÷ primeros auxilios minutos."
+model = ExtResource("2")
+price = 2000
+has_levels = true
+crew_stat = "first_aid"
+crew_slots = 1
+extra_slot_levels = PackedInt32Array(4, 7)
+base_rate = 1
+rate_per_level = 0.1

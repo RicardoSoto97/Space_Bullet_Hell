@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/enemies/enemy_splitter.glb" id="2"]
+[ext_resource type="Resource" path="res://data/scrap/heavy_plating.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"splitter"
+display_name = "Divisor"
+model = ExtResource("2")
+behavior = 0
+motion = 4
+max_hp = 50.0
+speed = 3.2
+turn_speed = 3.0
+collision_radius = 0.8
+contact_damage = 12.0
+dies_on_contact = true
+split_into = &"swarm"
+split_count = 4
+spawn_weight = 1.5
+min_difficulty = 3
+min_stage_time = 60.0
+spawn_ramp_seconds = 120.0
+common_scrap = 3
+special_scrap = ExtResource("3")
+special_amount = 1
+special_chance = 0.3

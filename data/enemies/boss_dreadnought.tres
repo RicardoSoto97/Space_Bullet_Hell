@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/enemies/boss_dreadnought.glb" id="2"]
+[ext_resource type="Resource" path="res://data/scrap/alien_tech.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"boss_dreadnought"
+display_name = "Acorazado"
+model = ExtResource("2")
+behavior = 1
+motion = 6
+max_hp = 3500.0
+speed = 2.2
+turn_speed = 0.8
+collision_radius = 3.3
+contact_damage = 25.0
+dies_on_contact = false
+contact_interval = 0.5
+preferred_distance = 11.0
+bullet_speed = 6.5
+bullet_damage = 6.0
+is_boss = true
+spawn_weight = 0.0
+common_scrap = 20
+special_scrap = ExtResource("3")
+special_amount = 5
+special_chance = 1.0

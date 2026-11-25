@@ -1,0 +1,38 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/enemies/enemy_mine_layer.glb" id="2"]
+[ext_resource type="Resource" path="res://data/scrap/electronics.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"mine_layer"
+display_name = "Sembrador"
+model = ExtResource("2")
+behavior = 1
+motion = 3
+max_hp = 45.0
+speed = 3.5
+turn_speed = 2.5
+collision_radius = 0.9
+contact_damage = 8.0
+dies_on_contact = false
+contact_interval = 0.6
+preferred_distance = 10.0
+fire_interval = 2.6
+bullets_per_burst = 5
+bullet_speed = 8.0
+bullet_damage = 5.0
+aimed = true
+fan_degrees = 40.0
+mine_interval = 1.8
+mine_damage = 8.0
+mine_lifetime = 10.0
+spawn_weight = 1.2
+min_difficulty = 4
+min_stage_time = 90.0
+spawn_ramp_seconds = 150.0
+common_scrap = 3
+special_scrap = ExtResource("3")
+special_amount = 2
+special_chance = 0.7

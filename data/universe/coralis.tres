@@ -1,0 +1,140 @@
+[gd_resource type="Resource" script_class="StarSystemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/star_system_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/celestial_body_data.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/data/station_data.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/data/zone_data.gd" id="4"]
+
+[sub_resource type="Resource" id="body_0"]
+script = ExtResource("2")
+id = &"coralis_star"
+display_name = "Coralis"
+kind = 0
+description = "Estrella azul intensa. Sus vientos estelares esculpen los asteroides en formas de coral."
+parent = &""
+orbit_radius = 0
+orbit_angle = 0
+orbit_speed = 0
+radius = 2.4
+color = Color(0.749, 0.9373, 1, 1)
+color2 = Color(0.3529, 0.8157, 1, 1)
+has_rings = false
+habitable = false
+temperature = 11000
+land_price = 0
+
+[sub_resource type="Resource" id="body_1"]
+script = ExtResource("2")
+id = &"coralis_opal"
+display_name = "Opal"
+kind = 1
+description = "Planeta de mares turquesa y costas de cristal. Caluroso, pero habitable."
+parent = &""
+orbit_radius = 7
+orbit_angle = 50
+orbit_speed = 1.1879
+radius = 0.85
+color = Color(0.3529, 0.6588, 0.6275, 1)
+color2 = Color(0.3529, 0.6588, 0.6275, 1)
+has_rings = false
+habitable = true
+temperature = 30
+land_price = 12000
+
+[sub_resource type="Resource" id="body_2"]
+script = ExtResource("2")
+id = &"coralis_lume"
+display_name = "Lume"
+kind = 2
+description = "Gigante gaseoso de tormentas eternas. No tiene superficie donde construir, aunque alguna de sus lunas sí."
+parent = &""
+orbit_radius = 13
+orbit_angle = 190
+orbit_speed = 0.4694
+radius = 1.6
+color = Color(0.5608, 0.8157, 0.8784, 1)
+color2 = Color(0.2902, 0.5647, 0.6588, 1)
+has_rings = false
+habitable = false
+temperature = -170
+land_price = 0
+
+[sub_resource type="Resource" id="body_3"]
+script = ExtResource("2")
+id = &"coralis_seri"
+display_name = "Seri"
+kind = 3
+description = "Luna templada por las mareas de su planeta. Cielos tranquilos y una vista privilegiada de las estrellas: ideal para investigar."
+parent = &"coralis_lume"
+orbit_radius = 2.8
+orbit_angle = 100
+orbit_speed = 5.3785
+radius = 0.32
+color = Color(0.7882, 0.8392, 0.7529, 1)
+color2 = Color(0.7882, 0.8392, 0.7529, 1)
+has_rings = false
+habitable = true
+temperature = -25
+land_price = 6000
+
+[sub_resource type="Resource" id="body_4"]
+script = ExtResource("2")
+id = &"coralis_coral9"
+display_name = "Coral-9"
+kind = 4
+description = "Asteroide grande y estable, rico en metales. Se puede excavar una base minera en su interior."
+parent = &""
+orbit_radius = 18
+orbit_angle = 320
+orbit_speed = 0.2881
+radius = 0.45
+color = Color(0.6275, 0.498, 0.5608, 1)
+color2 = Color(0.6275, 0.498, 0.5608, 1)
+has_rings = false
+habitable = true
+temperature = -160
+land_price = 3000
+
+[sub_resource type="Resource" id="station_0"]
+script = ExtResource("3")
+id = &"station_arrecife_coralis"
+display_name = "Arrecife Coralis"
+description = "Estación espacial con mecánico, bar y compra de chatarra. Sus cargadores rellenan el combustible interestelar al llegar."
+parent = &"coralis_opal"
+orbit_radius = 1.3
+orbit_angle = 240
+
+[sub_resource type="Resource" id="zone_0"]
+script = ExtResource("4")
+id = &"zone_arrecife_roto"
+display_name = "Arrecife Roto"
+description = "Un campo de asteroides afilados donde cada enemigo puede salir de cualquier parte."
+parent = &""
+orbit_radius = 10
+orbit_angle = 280
+distance_minutes = 25
+boss = &""
+boss_name = ""
+
+[sub_resource type="Resource" id="zone_1"]
+script = ExtResource("4")
+id = &"zone_ojo_coralis"
+display_name = "Ojo de Coralis"
+description = "Tan cerca de la estrella que los escudos se resienten. Solo los mejores vuelven."
+parent = &""
+orbit_radius = 4.2
+orbit_angle = 120
+distance_minutes = 25
+boss = &""
+boss_name = ""
+
+[resource]
+script = ExtResource("1")
+id = &"coralis"
+display_name = "Coralis"
+description = "Sistema de estrella azul rodeado de arrecifes de roca. Rico en chatarra rara y en enemigos."
+order = 7
+galaxy_position = Vector3(-840, -140, -1330)
+bodies = Array[ExtResource("2")]([SubResource("body_0"), SubResource("body_1"), SubResource("body_2"), SubResource("body_3"), SubResource("body_4")])
+stations = Array[ExtResource("3")]([SubResource("station_0")])
+zones = Array[ExtResource("4")]([SubResource("zone_0"), SubResource("zone_1")])

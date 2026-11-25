@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/building_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/buildings/refinery.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"refinery"
+display_name = "Refinería"
+description = "Convierte la chatarra guardada en la base en minerales puros, que valen un 50 % más. No necesita tripulantes."
+model = ExtResource("2")
+price = 3000
+has_levels = true
+crew_stat = ""
+crew_slots = 0
+extra_slot_levels = PackedInt32Array()
+base_rate = 30
+rate_per_level = 0.2

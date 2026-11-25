@@ -1,0 +1,170 @@
+[gd_resource type="Resource" script_class="StarSystemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/star_system_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/celestial_body_data.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/data/station_data.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/data/zone_data.gd" id="4"]
+
+[sub_resource type="Resource" id="body_0"]
+script = ExtResource("2")
+id = &"isk_maren_star"
+display_name = "Maren"
+kind = 0
+description = "Estrella blanca y potente. El gigante Isk le roba protagonismo en el cielo de sus lunas."
+parent = &""
+orbit_radius = 0
+orbit_angle = 0
+orbit_speed = 0
+radius = 2.3
+color = Color(0.9569, 0.9647, 1, 1)
+color2 = Color(0.7137, 0.7686, 1, 1)
+has_rings = false
+habitable = false
+temperature = 7400
+land_price = 0
+
+[sub_resource type="Resource" id="body_1"]
+script = ExtResource("2")
+id = &"isk_maren_morr"
+display_name = "Morr"
+kind = 1
+description = "Roca desnuda tan cerca de su estrella que la superficie brilla de calor. Nada sobrevive aquí."
+parent = &""
+orbit_radius = 5
+orbit_angle = 10
+orbit_speed = 1.9677
+radius = 0.6
+color = Color(0.6039, 0.4157, 0.3333, 1)
+color2 = Color(0.6039, 0.4157, 0.3333, 1)
+has_rings = false
+habitable = false
+temperature = 230
+land_price = 0
+
+[sub_resource type="Resource" id="body_2"]
+script = ExtResource("2")
+id = &"isk_maren_isk"
+display_name = "Isk"
+kind = 2
+description = "Gigante gaseoso de tormentas eternas. No tiene superficie donde construir, aunque alguna de sus lunas sí."
+parent = &""
+orbit_radius = 11
+orbit_angle = 140
+orbit_speed = 0.603
+radius = 2.6
+color = Color(0.7882, 0.5608, 0.4157, 1)
+color2 = Color(0.5412, 0.3098, 0.2275, 1)
+has_rings = false
+habitable = false
+temperature = -120
+land_price = 0
+
+[sub_resource type="Resource" id="body_3"]
+script = ExtResource("2")
+id = &"isk_maren_vaal"
+display_name = "Vaal"
+kind = 3
+description = "Luna templada por las mareas de su planeta. Cielos tranquilos y una vista privilegiada de las estrellas: ideal para investigar."
+parent = &"isk_maren_isk"
+orbit_radius = 3.8
+orbit_angle = 20
+orbit_speed = 4.6169
+radius = 0.42
+color = Color(0.6196, 0.7608, 0.6353, 1)
+color2 = Color(0.6196, 0.7608, 0.6353, 1)
+has_rings = false
+habitable = true
+temperature = 12
+land_price = 6000
+
+[sub_resource type="Resource" id="body_4"]
+script = ExtResource("2")
+id = &"isk_maren_ennu"
+display_name = "Ennu"
+kind = 3
+description = "Luna estéril cubierta de cráteres y polvo fino."
+parent = &"isk_maren_isk"
+orbit_radius = 5
+orbit_angle = 210
+orbit_speed = 4.0249
+radius = 0.3
+color = Color(0.6902, 0.6275, 0.5647, 1)
+color2 = Color(0.6902, 0.6275, 0.5647, 1)
+has_rings = false
+habitable = false
+temperature = -90
+land_price = 0
+
+[sub_resource type="Resource" id="body_5"]
+script = ExtResource("2")
+id = &"isk_maren_maren"
+display_name = "Maren"
+kind = 1
+description = "Planeta frío de tundras azuladas. Duro, pero habitable para quien sepa abrigarse."
+parent = &""
+orbit_radius = 18
+orbit_angle = 270
+orbit_speed = 0.2881
+radius = 0.85
+color = Color(0.4824, 0.5961, 0.6902, 1)
+color2 = Color(0.4824, 0.5961, 0.6902, 1)
+has_rings = false
+habitable = true
+temperature = -10
+land_price = 12000
+
+[sub_resource type="Resource" id="station_0"]
+script = ExtResource("3")
+id = &"station_ancla_maren"
+display_name = "Ancla Maren"
+description = "Estación espacial con mecánico, bar y compra de chatarra. Sus cargadores rellenan el combustible interestelar al llegar."
+parent = &"isk_maren_maren"
+orbit_radius = 1.3
+orbit_angle = 100
+
+[sub_resource type="Resource" id="zone_0"]
+script = ExtResource("4")
+id = &"zone_tormenta_isk"
+display_name = "Tormenta de Isk"
+description = "Una tormenta del tamaño de un planeta. Los sembradores llenan de minas sus corrientes."
+parent = &"isk_maren_isk"
+orbit_radius = 6.5
+orbit_angle = 300
+distance_minutes = 20
+boss = &""
+boss_name = ""
+
+[sub_resource type="Resource" id="zone_1"]
+script = ExtResource("4")
+id = &"zone_trono_morvath"
+display_name = "Trono de Morvath"
+description = "La guarida de un acorazado famoso por no haber perdido nunca una batalla."
+parent = &""
+orbit_radius = 14
+orbit_angle = 40
+distance_minutes = 20
+boss = &"boss_dreadnought"
+boss_name = "Acorazado Morvath"
+
+[sub_resource type="Resource" id="zone_2"]
+script = ExtResource("4")
+id = &"zone_abismo_maren"
+display_name = "Abismo de Maren"
+description = "El borde exterior del sistema, donde se reúnen las flotas enemigas."
+parent = &""
+orbit_radius = 22
+orbit_angle = 200
+distance_minutes = 25
+boss = &""
+boss_name = ""
+
+[resource]
+script = ExtResource("1")
+id = &"isk_maren"
+display_name = "Isk-Maren"
+description = "Un gigante gaseoso enorme domina el sistema. En su órbita se alza el trono de un acorazado."
+order = 6
+galaxy_position = Vector3(280, 168, -1190)
+bodies = Array[ExtResource("2")]([SubResource("body_0"), SubResource("body_1"), SubResource("body_2"), SubResource("body_3"), SubResource("body_4"), SubResource("body_5")])
+stations = Array[ExtResource("3")]([SubResource("station_0")])
+zones = Array[ExtResource("4")]([SubResource("zone_0"), SubResource("zone_1"), SubResource("zone_2")])

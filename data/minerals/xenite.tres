@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MineralData" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/mineral_data.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"xenite"
+display_name = "Xenita"
+price = 150
+color = Color(0.45, 1, 0.6, 1)
+source_scrap = &"alien_tech"
+source_amount = 1
+mine_weight = 0

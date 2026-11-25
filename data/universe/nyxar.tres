@@ -1,0 +1,158 @@
+[gd_resource type="Resource" script_class="StarSystemData" format=3]
+
+[ext_resource type="Script" path="res://scripts/data/star_system_data.gd" id="1"]
+[ext_resource type="Script" path="res://scripts/data/celestial_body_data.gd" id="2"]
+[ext_resource type="Script" path="res://scripts/data/station_data.gd" id="3"]
+[ext_resource type="Script" path="res://scripts/data/zone_data.gd" id="4"]
+
+[sub_resource type="Resource" id="body_0"]
+script = ExtResource("2")
+id = &"nyxar_star"
+display_name = "Nyxar"
+kind = 0
+description = "Estrella de luz violeta, extraña e inestable. Los instrumentos fallan cerca de ella."
+parent = &""
+orbit_radius = 0
+orbit_angle = 0
+orbit_speed = 0
+radius = 2
+color = Color(0.902, 0.7843, 1, 1)
+color2 = Color(0.6431, 0.3608, 1, 1)
+has_rings = false
+habitable = false
+temperature = 6800
+land_price = 0
+
+[sub_resource type="Resource" id="body_1"]
+script = ExtResource("2")
+id = &"nyxar_vel"
+display_name = "Vel"
+kind = 1
+description = "Roca desnuda tan cerca de su estrella que la superficie brilla de calor. Nada sobrevive aquí."
+parent = &""
+orbit_radius = 4.5
+orbit_angle = 250
+orbit_speed = 2.3046
+radius = 0.55
+color = Color(0.7686, 0.4157, 0.5412, 1)
+color2 = Color(0.7686, 0.4157, 0.5412, 1)
+has_rings = false
+habitable = false
+temperature = 380
+land_price = 0
+
+[sub_resource type="Resource" id="body_2"]
+script = ExtResource("2")
+id = &"nyxar_nox"
+display_name = "Nox"
+kind = 2
+description = "Gigante gaseoso de tormentas eternas. No tiene superficie donde construir, aunque alguna de sus lunas sí."
+parent = &""
+orbit_radius = 10
+orbit_angle = 70
+orbit_speed = 0.6957
+radius = 2.1
+color = Color(0.4353, 0.3529, 0.6588, 1)
+color2 = Color(0.2392, 0.1843, 0.4314, 1)
+has_rings = true
+habitable = false
+temperature = -140
+land_price = 0
+
+[sub_resource type="Resource" id="body_3"]
+script = ExtResource("2")
+id = &"nyxar_umbra"
+display_name = "Umbra"
+kind = 3
+description = "Luna templada por las mareas de su planeta. Cielos tranquilos y una vista privilegiada de las estrellas: ideal para investigar."
+parent = &"nyxar_nox"
+orbit_radius = 3.4
+orbit_angle = 140
+orbit_speed = 4.8809
+radius = 0.4
+color = Color(0.5608, 0.5608, 0.6902, 1)
+color2 = Color(0.5608, 0.5608, 0.6902, 1)
+has_rings = false
+habitable = true
+temperature = 2
+land_price = 6000
+
+[sub_resource type="Resource" id="body_4"]
+script = ExtResource("2")
+id = &"nyxar_ash"
+display_name = "Ash"
+kind = 3
+description = "Luna estéril cubierta de cráteres y polvo fino."
+parent = &"nyxar_nox"
+orbit_radius = 4.5
+orbit_angle = 330
+orbit_speed = 4.2426
+radius = 0.28
+color = Color(0.3725, 0.3529, 0.3529, 1)
+color2 = Color(0.3725, 0.3529, 0.3529, 1)
+has_rings = false
+habitable = false
+temperature = -100
+land_price = 0
+
+[sub_resource type="Resource" id="body_5"]
+script = ExtResource("2")
+id = &"nyxar_tyr"
+display_name = "Tyr"
+kind = 1
+description = "Planeta helado y silencioso. Bajo el hielo hay minerales, pero el frío es letal."
+parent = &""
+orbit_radius = 16
+orbit_angle = 180
+orbit_speed = 0.3438
+radius = 0.7
+color = Color(0.4784, 0.5608, 0.6275, 1)
+color2 = Color(0.4784, 0.5608, 0.6275, 1)
+has_rings = false
+habitable = false
+temperature = -70
+land_price = 0
+
+[sub_resource type="Resource" id="station_0"]
+script = ExtResource("3")
+id = &"station_ultimo_faro"
+display_name = "Último Faro"
+description = "Estación espacial con mecánico, bar y compra de chatarra. Sus cargadores rellenan el combustible interestelar al llegar."
+parent = &"nyxar_umbra"
+orbit_radius = 0.9
+orbit_angle = 30
+
+[sub_resource type="Resource" id="zone_0"]
+script = ExtResource("4")
+id = &"zone_velo_nyxar"
+display_name = "Velo de Nyxar"
+description = "Una cortina de radiación violeta. Detrás, todo lo que el enemigo tiene."
+parent = &""
+orbit_radius = 7.5
+orbit_angle = 320
+distance_minutes = 30
+boss = &""
+boss_name = ""
+
+[sub_resource type="Resource" id="zone_1"]
+script = ExtResource("4")
+id = &"zone_ciudadela_nyx"
+display_name = "Ciudadela Nyx"
+description = "La fortaleza final. Su acorazado manda sobre todas las flotas enemigas."
+parent = &""
+orbit_radius = 13.5
+orbit_angle = 220
+distance_minutes = 30
+boss = &"boss_dreadnought"
+boss_name = "Acorazado Nyx"
+
+[resource]
+script = ExtResource("1")
+id = &"nyxar"
+display_name = "Nyxar"
+description = "El sistema más lejano conocido. Su estrella violeta es la sede del acorazado más temido."
+order = 8
+galaxy_position = Vector3(1540, 56, -840)
+bodies = Array[ExtResource("2")]([SubResource("body_0"), SubResource("body_1"), SubResource("body_2"), SubResource("body_3"), SubResource("body_4"), SubResource("body_5")])
+stations = Array[ExtResource("3")]([SubResource("station_0")])
+zones = Array[ExtResource("4")]([SubResource("zone_0"), SubResource("zone_1")])

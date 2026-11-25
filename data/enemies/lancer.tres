@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/enemies/enemy_lancer.glb" id="2"]
+[ext_resource type="Resource" path="res://data/scrap/electronics.tres" id="3"]
+
+[resource]
+script = ExtResource("1")
+id = &"lancer"
+display_name = "Lancero"
+model = ExtResource("2")
+behavior = 2
+motion = 5
+max_hp = 30.0
+speed = 4.5
+turn_speed = 7.0
+collision_radius = 0.5
+contact_damage = 14.0
+dies_on_contact = false
+contact_interval = 0.4
+dash_range = 9.0
+dash_speed = 20.0
+dash_time = 0.45
+dash_windup = 0.7
+dash_cooldown = 1.2
+spawn_weight = 2.0
+min_difficulty = 2
+min_stage_time = 45.0
+spawn_ramp_seconds = 120.0
+common_scrap = 2
+special_scrap = ExtResource("3")
+special_amount = 1
+special_chance = 0.4

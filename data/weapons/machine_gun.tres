@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/weapon_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/parts/machine_gun.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"machine_gun"
+display_name = "Metralleta"
+model = ExtResource("2")
+kind = 0
+price = 250
+damage = 6
+fire_interval = 0.15
+projectile_speed = 32
+weapon_range = 13
+projectile_color = Color(1, 0.8, 0.35, 1)
+spread_degrees = 3
+aim_cone_degrees = 50
+area_radius = 0
+area_per_level = 0
+beam_width = 0.3
+evolves_into = &"twin_machine_gun"
+for_sale = true
+barrels = 1
+projectile_scale = 1
+research_points = 0
+pierce = 0
+pellets = 1
+pellet_spread_degrees = 0

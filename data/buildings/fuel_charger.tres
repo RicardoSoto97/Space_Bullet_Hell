@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BuildingData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/building_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/buildings/fuel_charger.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"fuel_charger"
+display_name = "Cargador de combustible"
+description = "Rellena el depósito de combustible interestelar al aterrizar, como los cargadores de las estaciones."
+model = ExtResource("2")
+price = 2000
+has_levels = false
+crew_stat = ""
+crew_slots = 0
+extra_slot_levels = PackedInt32Array()
+base_rate = 0
+rate_per_level = 0

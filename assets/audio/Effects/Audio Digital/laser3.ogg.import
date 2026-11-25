@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ipm6lm355760"
+path="res://.godot/imported/laser3.ogg-ef33be7eaa1baf4320a5d24f0e857c58.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/audio/Effects/Audio Digital/laser3.ogg"
+dest_files=["res://.godot/imported/laser3.ogg-ef33be7eaa1baf4320a5d24f0e857c58.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

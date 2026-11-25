@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/data/enemy_data.gd" id="1"]
+[ext_resource type="PackedScene" path="res://assets/models/enemies/enemy_swarm.glb" id="2"]
+
+[resource]
+script = ExtResource("1")
+id = &"swarm"
+display_name = "Enjambre"
+model = ExtResource("2")
+behavior = 0
+motion = 0
+max_hp = 8.0
+speed = 5.5
+turn_speed = 5.0
+collision_radius = 0.4
+contact_damage = 6.0
+dies_on_contact = true
+spawn_weight = 6.0
+min_stage_time = 0.0
+common_scrap = 1
+special_chance = 0.0
